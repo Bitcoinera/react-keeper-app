@@ -5,27 +5,35 @@ import Note from "./Note";
 import CreateArea from "./CreateArea";
 
 function App() {
-    const [items, setItems] = useState([]);
+  const [items, setItems] = useState([]);
 
-    const addItem = (item) => {
-        setItems(items.concat(item));
-    }
+  const addItem = (item) => {
+    setItems(items.concat(item));
+  };
 
-    const deleteItem = (id) => {
-        setItems(items.filter((item, index) => {
-            if (index !== id) return item
-        }))
-    }
+  const deleteItem = (id) => {
+    setItems(
+      items.filter((item, index) => {
+        if (index !== id) return item;
+      })
+    );
+  };
 
   return (
     <div>
       <Header />
-      <CreateArea onAdd={addItem}/>
-      {
-        items.map((item, index) => {
-            return <Note key={index} id={index} title={item.title} content={item.content} onDelete={deleteItem} />
-        })
-      }
+      <CreateArea onAdd={addItem} />
+      {items.map((item, index) => {
+        return (
+          <Note
+            key={index}
+            id={index}
+            title={item.title}
+            content={item.content}
+            onDelete={deleteItem}
+          />
+        );
+      })}
       <Footer />
     </div>
   );
