@@ -9,7 +9,13 @@ function App() {
 
     const addItem = (item) => {
         setItems(items.concat(item));
-    } 
+    }
+
+    const deleteItem = (id) => {
+        setItems(items.filter((item, index) => {
+            if (index !== id) return item
+        }))
+    }
 
   return (
     <div>
@@ -17,7 +23,7 @@ function App() {
       <CreateArea onAdd={addItem}/>
       {
         items.map((item, index) => {
-            return <Note key={index} title={item.title} content={item.content} />
+            return <Note key={index} id={index} title={item.title} content={item.content} onDelete={deleteItem} />
         })
       }
       <Footer />
