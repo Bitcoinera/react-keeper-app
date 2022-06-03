@@ -11,12 +11,20 @@ function CreateArea(props) {
             setItem({ ...item, content: value });
         }
     }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+    }
+
   return (
     <div>
-      <form>
-        <input onChange={handleChange} name="title" placeholder="Title" />
-        <textarea onChange={handleChange} name="content" placeholder="Take a note..." rows="3" />
-        <button onClick={() => props.onAdd(item)}>Add</button>
+      <form onSubmit={handleSubmit}>
+        <input onChange={handleChange} name="title" value={item.title} placeholder="Title" />
+        <textarea onChange={handleChange} name="content" value={item.content} placeholder="Take a note..." rows="3" />
+        <button onClick={() => {
+            props.onAdd(item)
+            setItem({title: "", content: ""})
+        }}>Add</button>
       </form>
     </div>
   );
