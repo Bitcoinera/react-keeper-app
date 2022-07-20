@@ -13,6 +13,7 @@ function App() {
 
   const deleteItem = (id) => {
     setItems(
+      // eslint-disable-next-line
       items.filter((item, index) => {
         if (index !== id) return item;
       })
